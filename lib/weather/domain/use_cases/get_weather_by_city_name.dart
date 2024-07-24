@@ -4,7 +4,7 @@ import 'package:clean_arch_weather_app/weather/domain/repository/weather_reposit
 class GetWeatherByCityName {
   final WeatherRepository weatherRepository;
 
-  GetWeatherByCityName(this.weatherRepository);
+  GetWeatherByCityName({required this.weatherRepository});
 
   Future<Weather> execute(String cityName) async =>
       await weatherRepository.getWeatherByCityName(cityName);
