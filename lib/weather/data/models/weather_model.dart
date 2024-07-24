@@ -7,7 +7,8 @@ class WeatherModel extends Weather {
       required super.temperature,
       required super.description,
       required super.icon,
-      required super.time});
+      required super.time,
+      required super.date});
 
   factory WeatherModel.fromJson(Map<String, dynamic> json) {
     return WeatherModel(
@@ -16,8 +17,17 @@ class WeatherModel extends Weather {
       temperature: json['current']['temp_c'],
       description: json['current']['condition']['text'],
       icon: json['current']['condition']['icon'],
-      time:
-          DateTime.parse(json['current']['last_updated']).toLocal().toString(),
+      date: DateTime.parse(json['current']['last_updated'])
+          .toLocal()
+          .toString()
+          .substring(0, 11),
+      time: DateTime.parse(json['current']['last_updated'])
+          .toLocal()
+          .toString()
+          .substring(
+            11,
+            19,
+          ),
     );
   }
 }
